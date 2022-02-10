@@ -21,9 +21,9 @@
 		</view>
 
 		
-		<oh-drag-container :sticky="sticky" :disabled="disabled" :stickyLeft="stickyLeft" :overflow="overflow" :start-right="right" :start-top="top">
+		<oh-drag-container :sticky="sticky" :disabled="disabled" :sticky-left="stickyLeft" :start-top="top">
 			<view class="container" @click="clickContent">
-				{{right}}
+				请拖拽
 			</view>
 		</oh-drag-container>
 	</view>
@@ -36,9 +36,7 @@
 				sticky: true,
 				stickyLeft: true,
 				disabled: false,
-				overflow: false,
-				top: '50%',
-				right: '0'
+				top: '50%'
 			}
 		},
 		methods: {
@@ -51,9 +49,6 @@
 			switchDisabled(e) {
 				this.disabled = e.target.value
 			},
-			switchOverflow(e) {
-				this.overflow = e.target.value
-			},
 			clickContent() {
 				uni.showToast({
 					icon: 'none',
@@ -62,9 +57,6 @@
 			},
 			changeStartTop(e) {
 				this.top = e.detail.value
-			},
-			changeStartRight(e) {
-				this.right = e.detail.value
 			}
 		}
 	}

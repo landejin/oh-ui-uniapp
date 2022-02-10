@@ -1,4 +1,4 @@
-import Icon from "./components/oh-icon.vue"
+import Icon from "./oh-icon.vue"
 
 const install = (Vue) => {
 	Vue.component(Icon.name, Icon)

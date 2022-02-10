@@ -67,26 +67,35 @@
 		watch: {
 			disabled(val) {
 				if (val) {
-					this.show = false
+					this.closeEmit()
 				}
 			}
 		},
 		methods: {
+			closeEmit() {
+				this.show = false
+				this.$emit('close')
+			}
 			close() {
 				if (this.closeOnClickItem) {
-					this.show = false;
+					this.closeEmit()
 				}
 			},
 			closeMask() {
 				if (this.closeOnClickMask) {
-					this.show = false;
+					this.closeEmit()
 				}
 			},
 			toggle() {
 				if (!this.disabled) {
-					console.log('点击')
+					this.$emit('click',!this.show)
 					this.checkPosition()
-					this.show = !this.show;
+					if (this.show) {
+						this.closeEmit()
+					} else {
+						this.show = true
+						this.$emit('open')
+					}
 				}
 			},
 			checkPosition() {
@@ -131,7 +140,6 @@
 					this.query = uni.createSelectorQuery().in(this)
 					this.checkPosition()
 				}
-				
 			}
 		},
 		mounted() {

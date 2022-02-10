@@ -29,7 +29,7 @@
 				default: 99999
 			},
 			startTop: {
-				type: String,
+				type: [String,Number],
 				default: '50%'
 			}
 		},
@@ -56,7 +56,7 @@
 		},
 		computed: {
 			drawStyle() {
-				return `transform: translate(${this.moveDistance.x}px,${this.moveDistance.y}px);z-index: ${this.zIndex};top: ${this.startTop}`
+				return `transform: translate(${this.moveDistance.x}px,${this.moveDistance.y}px);z-index: ${this.zIndex};top: ${Number(this.startTop) ? this.startTop + 'rpx': this.startTop}`
 			}
 		},
 		created() {
@@ -71,6 +71,7 @@
 			touchstart(e) {
 				this.startPoint.left = e.touches[0].pageX
 				this.startPoint.top = e.touches[0].pageY
+				this.$emit('start',this.startPoint.left,this.startPoint.top)
 			},
 			touchmove(e) {
 				this.moveDistance.x = this.prevPoint.x + (e.touches[0].pageX - this.startPoint.left)
@@ -92,7 +93,6 @@
 
 					//吸附到左右边框上
 					if (this.sticky) {
-						console.log(-this.screen.windowWidth + width,this.moveDistance.x / this.screen.windowWidth)
 						// 获取屏幕宽高，判断元素位置与屏幕关系
 						if (this.stickyLeft && this.moveDistance.x / this.screen.windowWidth < -0.5) {
 							this.moveDistance.x = -this.screen.windowWidth + width;
@@ -102,8 +102,9 @@
 
 						this.prevPoint.x = this.moveDistance.x
 						this.prevPoint.y = this.moveDistance.y
-
 					}
+					
+					this.$emit('end',this.moveDistance.x,this.moveDistance.y)
 				})
 			},
 			getComponentsDomInfo() {

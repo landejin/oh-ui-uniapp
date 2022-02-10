@@ -11,6 +11,7 @@ module.exports = {
 		sidebar: [{
 				title: '开发指南',
 				collapsable: false,
+				sidebarDepth: 0,
 				children: [
 					'/start/intro',
 					// '/start/install',
@@ -21,6 +22,7 @@ module.exports = {
 			{
 				title: '组件',
 				collapsable: false,
+				sidebarDepth: 0,
 				children: [
 					'/component/icon',
 					'/component/drag-container',

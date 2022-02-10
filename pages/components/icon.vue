@@ -9,7 +9,10 @@
 				<view class="icon" v-for="icon in item.list" :key="icon.name">
 					<oh-icon :name="icon.name" size="60"></oh-icon>
 					<view class="icon-text">
-						{{icon.text}}
+						{{icon.name}}
+						<view class="">
+							{{icon.text}}
+						</view>
 					</view>
 				</view>
 			</view>
@@ -487,7 +490,7 @@
 								name: 'arrow-left-circle-fill',
 								text: '左'
 							},
-							
+
 							{
 								name: 'arrow-down-s-line',
 								text: '下'
@@ -1332,8 +1335,7 @@
 					},
 					{
 						title: '电商',
-						list: [
-							{
+						list: [{
 								name: 'customer-service-line',
 								text: '客服'
 							},
@@ -1699,8 +1701,7 @@
 					},
 					{
 						title: '品牌',
-						list: [
-							{
+						list: [{
 								name: 'wechat-line',
 								text: '微信'
 							},
