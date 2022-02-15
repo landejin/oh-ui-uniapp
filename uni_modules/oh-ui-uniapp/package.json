@@ -2,8 +2,7 @@
   "name": "oh-ui-uniapp",
   "id": "oh-ui-uniapp",
   "displayName": "oh-ui-uniapp",
-  "version": "1.0.0",
-  "main": "index.js",
+  "version": "1.0.1",
   "description": "oh-ui的uniapp版本，积累常用业务组件",
   "keywords": [
     "oh-ui",
@@ -11,10 +10,10 @@
     "uniapp",
     "vue",
     "vue2"
-  ],
+],
   "repository": "",
   "engines": {
-    "HBuilderX": "^3.1.0"
+    "HBuilderX": "^3.3.3"
   },
   "dcloudext": {
     "category": [
@@ -44,8 +43,8 @@
     "encrypt": [],
     "platforms": {
       "cloud": {
-        "tcb": "u",
-        "aliyun": "u"
+        "tcb": "y",
+        "aliyun": "y"
       },
       "client": {
         "Vue": {

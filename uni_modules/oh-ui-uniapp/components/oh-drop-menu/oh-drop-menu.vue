@@ -20,7 +20,6 @@
 				show: false,
 				contentClass: "",
 				systemInfo: null,
-				query: null,
 				contentStyleData: {
 					top: '',
 					bottom: '',
@@ -75,7 +74,7 @@
 			closeEmit() {
 				this.show = false
 				this.$emit('close')
-			}
+			},
 			close() {
 				if (this.closeOnClickItem) {
 					this.closeEmit()
@@ -88,7 +87,7 @@
 			},
 			toggle() {
 				if (!this.disabled) {
-					this.$emit('click',!this.show)
+					this.$emit('click', !this.show)
 					this.checkPosition()
 					if (this.show) {
 						this.closeEmit()
@@ -100,46 +99,41 @@
 			},
 			checkPosition() {
 				const data = this.systemInfo
-				
+
 				if (!data) {
 					return;
 				}
-				
+
 				// 获取开关宽高
-				if (this.query) {
-					this.query.select('.bc-drop').boundingClientRect(dom => {
-						const {
-							left,
-							top
-						} = dom;
-					
-						/* 如果按钮的位置在屏幕宽度的40%内，下拉内容居左
-						如果按钮的位置在屏幕宽度的60%内，下拉内容居右
-						如果按钮的位置 <= 屏幕高度的50%内，下拉方向向下
-						如果按钮的位置 >屏幕高度的50%内，下拉方向向上 */
-					
-						if (left / data.windowWidth < 0.5) {
-							this.contentClass = "left";
-						} else {
-							this.contentClass = "right";
-						}
-					
-						if (top / data.windowHeight < 0.5) {
-							this.contentStyleData.bottom = ''
-							this.contentStyleData.top = dom.height + 5 + 'px';
-							this.contentStyleData['transform-origin'] = this.contentClass +
-								' top'; // 空格不要删除
-						} else {
-							this.contentStyleData.top = ''
-							this.contentStyleData.bottom = dom.height + 5 + 'px';
-							this.contentStyleData['transform-origin'] = this.contentClass +
-								' bottom'; // 空格不要删除
-						}
-					}).exec();
-				} else {
-					this.query = uni.createSelectorQuery().in(this)
-					this.checkPosition()
-				}
+				uni.createSelectorQuery().in(this).select('.bc-drop').boundingClientRect(dom => {
+					const {
+						left,
+						top
+					} = dom;
+
+					/* 如果按钮的位置在屏幕宽度的40%内，下拉内容居左
+					如果按钮的位置在屏幕宽度的60%内，下拉内容居右
+					如果按钮的位置 <= 屏幕高度的50%内，下拉方向向下
+					如果按钮的位置 >屏幕高度的50%内，下拉方向向上 */
+
+					if (left / data.windowWidth < 0.5) {
+						this.contentClass = "left";
+					} else {
+						this.contentClass = "right";
+					}
+
+					if (top / data.windowHeight < 0.5) {
+						this.contentStyleData.bottom = ''
+						this.contentStyleData.top = dom.height + 5 + 'px';
+						this.contentStyleData['transform-origin'] = this.contentClass +
+							' top'; // 空格不要删除
+					} else {
+						this.contentStyleData.top = ''
+						this.contentStyleData.bottom = dom.height + 5 + 'px';
+						this.contentStyleData['transform-origin'] = this.contentClass +
+							' bottom'; // 空格不要删除
+					}
+				}).exec();
 			}
 		},
 		mounted() {

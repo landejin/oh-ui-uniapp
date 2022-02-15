@@ -94,7 +94,7 @@
             "base" : "/oh-ui-uniapp/"
         },
         "devServer" : {
-            "https" : true
+            "https" : false
         },
         "title" : "oh-ui-uniapp文档",
         "optimization" : {
